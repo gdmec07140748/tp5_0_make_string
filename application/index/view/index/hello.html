@@ -1,0 +1,82 @@
+{extend name="layouts/base" /}
+
+{block name="nav"}
+
+<div class="container">
+    <h2>修改信息</h2>
+    <form id="tf">
+    <div class="row">
+        <!--原代码-->
+        <div class="col-sm-6">
+            <h3>源码</h3>
+            <textarea class="form-control" rows="40" id="comment" name="tear"></textarea>
+        </div>
+        <!--值-->
+        <div class="col-sm-6 ">
+            <h3>键值对</h3>
+            <div class="input-group mb-3 addky">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">替换</span>
+                </div>
+                <input type="text" class="form-control" name="key[]" placeholder="变量名称">
+                <input type="text" class="form-control" name="val[]" placeholder="变量值">
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="type" value="1" checked>替换 1 个</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="type" value="2">替换多个</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="type" value="3">sql 字段替换</label>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="test();">提交</button>
+            <!--<button type="button" class="btn btn-primary" onclick="restform();">重置表单</button>-->
+            <button type="button" class="btn btn-primary"  onclick="addrow();">添加</button>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <textarea class="form-control" rows="40" id="comment2"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+        <br>
+
+    </form>
+
+    <!--结果-->
+
+</div>
+{/block}
+
+{block name="footerjs"}
+
+<script type="application/javascript">
+function test(){
+var form = new FormData(document.getElementById("tf"));
+$.ajax({
+url:"index/index/userpo",
+type:"post",
+data:form,
+processData:false,
+contentType:false,
+success:function(data){
+    $("#comment2").val(data.data);
+    console.log("over..");
+},
+error:function(e){
+alert("错误！！");
+}
+});
+// get();//此处为上传文件的进度条
+}
+
+function restform() {
+    $("form").each(function(){
+    // .reset();
+    });
+}
+</script>
+{/block}
