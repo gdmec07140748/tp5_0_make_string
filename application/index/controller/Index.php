@@ -17,7 +17,6 @@ class Index extends Base
     // - 标识
     public  function userpo()
     {
-        return json(['test1']);
         $arr = Request::instance()->post();
 
         $str = trim($arr['tear']);
