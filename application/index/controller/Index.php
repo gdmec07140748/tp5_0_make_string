@@ -45,6 +45,6 @@ class Index extends Base
             }
             $info['data'] = $type1;
         }
-        return json($info);
+        return json_encode($info);
     }
 }
