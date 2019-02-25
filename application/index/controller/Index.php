@@ -6,6 +6,10 @@ use think\Request;
 
 class Index extends Base
 {
+    public function test(){
+        return 'Hello world!';
+    }
+
     // http://demo.tp50.com:8081/
     public function index()
     {
